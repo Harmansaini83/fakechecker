@@ -1,115 +1,327 @@
-import { useState } from 'react';
-import { verify, ApiError, type ScanMode, type LatLng, type VerifyData } from './api';
+import { useEffect, useState } from 'react';
+import { verify, ApiError, type ScanMode, type VerifyData } from './api';
 import { Scanner } from './Scanner';
 import { ResultCard } from './ResultCard';
+import { ReportForm } from './ReportForm';
+import { Heatmap } from './Heatmap';
+import { Privacy } from './Privacy';
+import { LANGS, setLang, useT, type Lang } from './i18n';
+import { verdictKey } from './verdictInfo';
+import {
+  enqueue,
+  getQueue,
+  flushQueue,
+  getLocation,
+  loadLocPref,
+  saveLocPref,
+  type Processed,
+} from './local';
 
-type View = 'home' | 'scanning' | 'loading' | 'result';
-
-function getLocation(): Promise<LatLng | undefined> {
-  return new Promise((resolve) => {
-    if (!navigator.geolocation) return resolve(undefined);
-    navigator.geolocation.getCurrentPosition(
-      (p) => resolve({ lat: p.coords.latitude, lng: p.coords.longitude }),
-      () => resolve(undefined),
-      { timeout: 5000, maximumAge: 60000 }
-    );
-  });
-}
+type View =
+  | 'home'
+  | 'scanning'
+  | 'loading'
+  | 'result'
+  | 'report'
+  | 'privacy'
+  | 'map'
+  | 'saved';
 
 export default function App() {
+  const { lang, t } = useT();
+
   const [view, setView] = useState<View>('home');
   const [manual, setManual] = useState('');
   const [mode, setMode] = useState<ScanMode>('farmer');
-  const [shareLoc, setShareLoc] = useState(false);
+  const [shareLoc, setShareLoc] = useState(loadLocPref);
   const [error, setError] = useState('');
+  const [notice, setNotice] = useState('');
   const [result, setResult] = useState<VerifyData | null>(null);
+  const [lastCode, setLastCode] = useState('');
+  const [online, setOnline] = useState(navigator.onLine);
+  const [queued, setQueued] = useState(getQueue().length);
+  const [saved, setSaved] = useState<Processed[]>([]);
+
+  useEffect(() => {
+    const on = () => setOnline(true);
+    const off = () => setOnline(false);
+
+    window.addEventListener('online', on);
+    window.addEventListener('offline', off);
+
+    return () => {
+      window.removeEventListener('online', on);
+      window.removeEventListener('offline', off);
+    };
+  }, []);
 
   async function check(code: string) {
     const trimmed = code.trim();
-    if (!trimmed) return setError('Please enter the code.');
+
+    if (!trimmed) {
+      setError(t('needCode'));
+      return;
+    }
+
+    setLastCode(trimmed);
     setError('');
+    setNotice('');
     setView('loading');
+
     try {
       const location = shareLoc ? await getLocation() : undefined;
-      setResult(await verify(trimmed, mode, location));
+
+      const data = await verify(trimmed, mode, location);
+
+      setResult(data);
       setView('result');
     } catch (e) {
-      setError(e instanceof ApiError ? e.message : 'Something went wrong. Please try again.');
+      if (e instanceof ApiError && e.code === 'NETWORK') {
+        setQueued(enqueue(trimmed, mode));
+        setNotice(t('savedOffline'));
+      } else {
+        setError(
+          e instanceof ApiError && e.code === 'RATE_LIMITED'
+            ? t('rateLimited')
+            : t('genericErr')
+        );
+      }
+
       setView('home');
     }
+  }
+
+  async function checkSaved() {
+    setView('loading');
+
+    const done = await flushQueue();
+
+    setQueued(getQueue().length);
+
+    if (!done.length) {
+      setNotice(t('savedOffline'));
+      setView('home');
+      return;
+    }
+
+    setSaved(done);
+    setView('saved');
   }
 
   function reset() {
     setResult(null);
     setManual('');
     setError('');
+    setNotice('');
     setView('home');
   }
 
   return (
     <main className="app">
       <header>
+        <select
+          className="lang"
+          aria-label={t('language')}
+          value={lang}
+          onChange={(e) => setLang(e.target.value as Lang)}
+        >
+          {LANGS.map((l) => (
+            <option key={l.code} value={l.code}>
+              {l.label}
+            </option>
+          ))}
+        </select>
+
         <h1>FakeChecker</h1>
-        <p className="sub">Check seeds, pesticides and fertilizers</p>
+        <p className="sub">{t('subtitle')}</p>
       </header>
 
-      {error && <div className="error" role="alert">{error}</div>}
+      {!online && (
+        <div className="notice">{t('offlineBanner')}</div>
+      )}
+
+      {notice && (
+        <div className="notice" role="status">
+          {notice}
+        </div>
+      )}
+
+      {error && (
+        <div className="error" role="alert">
+          {error}
+        </div>
+      )}
 
       {view === 'home' && (
         <>
-          <button className="btn primary big" onClick={() => { setError(''); setView('scanning'); }}>
-            Scan QR code
+          {queued > 0 && (
+            <div className="notice">
+              {t('pending')}: {queued}{' '}
+              <button
+                className="btn"
+                disabled={!online}
+                onClick={checkSaved}
+              >
+                {t('checkSaved')}
+              </button>
+            </div>
+          )}
+
+          <button
+            className="btn primary big"
+            onClick={() => {
+              setError('');
+              setNotice('');
+              setView('scanning');
+            }}
+          >
+            {t('scan')}
           </button>
 
-          <div className="or">or type the code printed on the packet</div>
+          <div className="or">{t('orType')}</div>
+
           <input
             className="input"
             value={manual}
             onChange={(e) => setManual(e.target.value)}
-            placeholder="Enter code"
+            placeholder={t('enterCode')}
             maxLength={500}
             autoComplete="off"
             autoCapitalize="off"
             spellCheck={false}
           />
-          <button className="btn" onClick={() => check(manual)}>Check code</button>
+
+          <button className="btn" onClick={() => check(manual)}>
+            {t('check')}
+          </button>
 
           <fieldset className="opts">
-            <legend>Options</legend>
+            <legend>{t('options')}</legend>
+
             <label>
-              <input type="radio" checked={mode === 'farmer'} onChange={() => setMode('farmer')} /> I am a farmer
+              <input
+                type="radio"
+                checked={mode === 'farmer'}
+                onChange={() => setMode('farmer')}
+              />{' '}
+              {t('farmer')}
             </label>
+
             <label>
-              <input type="radio" checked={mode === 'retailer'} onChange={() => setMode('retailer')} /> I am a retailer
+              <input
+                type="radio"
+                checked={mode === 'retailer'}
+                onChange={() => setMode('retailer')}
+              />{' '}
+              {t('retailer')}
             </label>
+
             <label>
-              <input type="checkbox" checked={shareLoc} onChange={(e) => setShareLoc(e.target.checked)} /> Share my
-              location to improve fake detection (optional)
+              <input
+                type="checkbox"
+                checked={shareLoc}
+                onChange={(e) => {
+                  setShareLoc(e.target.checked);
+                  saveLocPref(e.target.checked);
+                }}
+              />{' '}
+              {t('shareLoc')}
             </label>
           </fieldset>
+
+          <div className="linkrow">
+            <button className="btn" onClick={() => setView('map')}>
+              {t('hotspots')}
+            </button>
+
+            <button
+              className="btn"
+              onClick={() => setView('privacy')}
+            >
+              {t('privacy')}
+            </button>
+          </div>
         </>
       )}
 
       {view === 'scanning' && (
         <>
           <Scanner
-            onCode={(c) => check(c)}
-            onError={(m) => { setError(m); setView('home'); }}
+            onCode={(code) => check(code)}
+            onError={(kind) => {
+              setError(
+                t(kind === 'denied' ? 'camDenied' : 'camFailed')
+              );
+              setView('home');
+            }}
           />
-          <p className="sub">Point the camera at the QR code.</p>
-          <button className="btn" onClick={() => setView('home')}>Cancel</button>
+
+          <p className="sub">{t('pointCamera')}</p>
+
+          <button className="btn" onClick={() => setView('home')}>
+            {t('cancel')}
+          </button>
         </>
       )}
 
-      {view === 'loading' && <p className="loading" aria-live="polite">Checking…</p>}
+      {view === 'loading' && (
+        <p className="loading" aria-live="polite">
+          {t('checking')}
+        </p>
+      )}
 
-   {view === 'result' && result && (
-  <ResultCard
-    data={result}
-    onAgain={reset}
-    onReport={() => alert('Report feature coming soon!')}
-  />
-)}
+      {view === 'result' && result && (
+        <ResultCard
+          data={result}
+          onAgain={reset}
+          onReport={() => setView('report')}
+        />
+      )}
+
+      {view === 'report' && (
+        <ReportForm code={lastCode} onDone={reset} />
+      )}
+
+      {view === 'privacy' && (
+        <Privacy
+          onBack={reset}
+          onCleared={() => {
+            setQueued(0);
+            setShareLoc(false);
+          }}
+        />
+      )}
+
+      {view === 'map' && <Heatmap onBack={reset} />}
+
+      {view === 'saved' && (
+        <>
+          <h2>{t('savedResults')}</h2>
+
+          <ul className="saved">
+            {saved.map((s, i) => (
+              <li key={i}>
+                <code>
+                  {s.code.slice(0, 24)}
+                  {s.code.length > 24 ? '…' : ''}
+                </code>
+                :{' '}
+                <strong>
+                  {s.data
+                    ? t(verdictKey(s.data.verdict, 'title'))
+                    : t('genericErr')}
+                </strong>
+              </li>
+            ))}
+          </ul>
+
+          <p className="disclaimer">{t('disclaimer')}</p>
+
+          <button className="btn primary" onClick={reset}>
+            {t('back')}
+          </button>
+        </>
+      )}
     </main>
   );
 }

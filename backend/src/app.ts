@@ -12,7 +12,9 @@ import { verifyRoutes } from './routes/verify.js';
 import { authRoutes } from './routes/auth.js';
 import { adminRoutes } from './routes/admin.js';
 import { reportRoutes } from './routes/reports.js';
+import { heatmapRoutes } from './routes/heatmap.js';
 import { ok, fail } from './http.js';
+import { manufacturerRoutes } from './routes/manufacturer.js';
 
 export type AppOptions = {
   rateLimitMax?: number;
@@ -156,6 +158,11 @@ export async function buildApp(opts: AppOptions = {}) {
   await app.register(reportRoutes, {
     submitMax: opts.reportSubmitMax ?? 5,
   });
+
+  // Register heatmap routes.
+  await app.register(heatmapRoutes);
+
+  await app.register(manufacturerRoutes);
 
   return app;
 }

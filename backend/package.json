@@ -12,7 +12,9 @@
     "seed": "tsx src/db/seed.ts",
     "quickcheck": "tsx src/scripts/quickcheck.ts",
     "test:int": "vitest run --config vitest.int.config.ts",
-    "evaluate": "npm run seed && tsx src/scripts/evaluate.ts"
+    "evaluate": "npm run seed && tsx src/scripts/evaluate.ts",
+    "purge": "tsx src/scripts/purge.ts",
+    "demo:heatmap": "tsx src/scripts/demo-heatmap.ts"
   },
   "keywords": [],
   "author": "",

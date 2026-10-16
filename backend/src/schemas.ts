@@ -55,3 +55,8 @@ export const reviewBody = z.object({
   status: z.enum(['confirmed', 'rejected']),
   note: z.string().trim().max(1000).optional(),
 });
+export const heatmapQuery = z.object({
+  days: z.coerce.number().int().min(1).max(365).default(30),
+  cell: z.coerce.number().min(0.01).max(1).default(0.1),
+  min: z.coerce.number().int().min(1).max(100).default(1),
+});
