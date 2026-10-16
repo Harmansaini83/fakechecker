@@ -1,0 +1,30 @@
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: fakechecker
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: fakechecker
+    volumes: [pgdata:/var/lib/postgresql/data]
+  api:
+    build: ./backend
+    restart: unless-stopped
+    depends_on: [db]
+    env_file: .env.prod
+    environment:
+      DATABASE_URL: postgres://fakechecker:${DB_PASSWORD}@db:5432/fakechecker
+      UPLOAD_DIR: /data/uploads
+      TRUST_PROXY: "1"
+      NODE_ENV: production
+    volumes: [uploads:/data/uploads]
+  web:
+    image: caddy:2
+    restart: unless-stopped
+    ports: ["80:80", "443:443"]
+    depends_on: [api]
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./frontend/dist:/srv:ro
+      - caddy:/data
+volumes: { pgdata: {}, uploads: {}, caddy: {} }

@@ -26,7 +26,7 @@ export type AppOptions = {
 export async function buildApp(opts: AppOptions = {}) {
   const app = Fastify({
     logger: opts.logger ?? true,
-    trustProxy: true,
+    trustProxy: process.env.TRUST_PROXY || false,
   });
 
   const secret =
@@ -51,8 +51,11 @@ export async function buildApp(opts: AppOptions = {}) {
     methods: ['GET', 'HEAD', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
   });
 
+  // Configurable global rate limit.
   await app.register(rateLimit, {
-    max: opts.rateLimitMax ?? 60,
+    max:
+      opts.rateLimitMax ??
+      Number(process.env.RATE_LIMIT_MAX ?? 60),
     timeWindow: '1 minute',
   });
 
@@ -122,13 +125,13 @@ export async function buildApp(opts: AppOptions = {}) {
         code,
         status >= 500
           ? 'Something went wrong. Please try again.'
-          : error.message
-      )
+          : error.message,
+      ),
     );
   });
 
   app.setNotFoundHandler((_req, reply) =>
-    reply.status(404).send(fail('NOT_FOUND', 'Route not found.'))
+    reply.status(404).send(fail('NOT_FOUND', 'Route not found.')),
   );
 
   app.get(
@@ -143,7 +146,7 @@ export async function buildApp(opts: AppOptions = {}) {
           .status(503)
           .send(fail('DB_DOWN', 'Database unavailable.'));
       }
-    }
+    },
   );
 
   await app.register(verifyRoutes);
@@ -154,12 +157,10 @@ export async function buildApp(opts: AppOptions = {}) {
 
   await app.register(adminRoutes);
 
-  // Register report routes.
   await app.register(reportRoutes, {
     submitMax: opts.reportSubmitMax ?? 5,
   });
 
-  // Register heatmap routes.
   await app.register(heatmapRoutes);
 
   await app.register(manufacturerRoutes);
