@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 import { pool } from './pool.js';
+import { hashPassword } from '../services/password.js';
 import {
   generateKeyPair,
   loadPrivateKey,
@@ -178,6 +179,16 @@ async function main() {
     const p = await addPackage(activeBatchIds[i], 'counterfeit_confirmed');
     cases.push({ name: `confirmed counterfeit ${i + 1}`, code: p.code, expected: 'confirmed_counterfeit' });
   }
+  // Demo staff accounts (local demo only)
+  const demoHash = await hashPassword('Demo@12345');
+  
+  await pool.query(
+    `INSERT INTO admin_users (email, password_hash, role, manufacturer_id) VALUES
+     ('admin@demo.test', $1, 'admin', NULL),
+     ('moderator@demo.test', $1, 'moderator', NULL),
+     ('manufacturer@demo.test', $1, 'manufacturer', 1)`,
+    [demoHash]
+  );
 
   await pool.query(
     `UPDATE packages p SET scan_count = s.c, first_scan_at = s.f

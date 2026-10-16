@@ -1,6 +1,6 @@
 {
   "summary": {
-    "generatedAt": "2026-10-16T18:37:06.636Z",
+    "generatedAt": "2026-10-16T19:40:08.438Z",
     "dataType": "synthetic demo data",
     "totalCases": 66,
     "overallAccuracy": 1,
@@ -9,9 +9,9 @@
     "falsePositiveRate": 0,
     "falseNegativeRate": 0,
     "latencyMs": {
-      "p50": 1.9,
-      "p95": 2.6,
-      "max": 30.6
+      "p50": 2.6,
+      "p95": 3.4,
+      "max": 35.3
     }
   },
   "failures": []
