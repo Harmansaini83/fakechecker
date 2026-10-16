@@ -17,8 +17,16 @@ export async function buildApp(opts: AppOptions = {}) {
   app.setValidatorCompiler(() => (data: unknown) => ({ value: data }));
 
   await app.register(helmet, { contentSecurityPolicy: false });
-  await app.register(cors, { origin: process.env.FRONTEND_ORIGIN || 'http://localhost:5173' });
-  await app.register(rateLimit, { max: opts.rateLimitMax ?? 60, timeWindow: '1 minute' });
+
+  await app.register(cors, {
+    origin: process.env.FRONTEND_ORIGIN || 'http://localhost:5173',
+  });
+
+  await app.register(rateLimit, {
+    max: opts.rateLimitMax ?? 60,
+    timeWindow: '1 minute',
+  });
+
   await app.register(swagger, {
     openapi: {
       info: {
@@ -28,19 +36,44 @@ export async function buildApp(opts: AppOptions = {}) {
       },
     },
   });
+
   await app.register(swaggerUi, { routePrefix: '/docs' });
 
-  app.setErrorHandler((err, req, reply) => {
-    const status = err.statusCode ?? 500;
-    if (status >= 500) req.log.error(err);
+  app.setErrorHandler((err: unknown, req, reply) => {
+    // Fastify errors normally extend Error and may include statusCode.
+    const error = err instanceof Error ? err : new Error(String(err));
+
+    const statusCode =
+      typeof (err as { statusCode?: unknown } | null)?.statusCode === 'number'
+        ? (err as { statusCode: number }).statusCode
+        : 500;
+
+    const status = statusCode >= 400 && statusCode <= 599 ? statusCode : 500;
+
+    if (status >= 500) {
+      req.log.error({ err: error }, 'Request failed');
+    }
+
     const code =
-      status === 429 ? 'RATE_LIMITED' : status === 404 ? 'NOT_FOUND' : status < 500 ? 'BAD_REQUEST' : 'INTERNAL_ERROR';
-    reply
-      .status(status)
-      .send(fail(code, status >= 500 ? 'Something went wrong. Please try again.' : err.message));
+      status === 429
+        ? 'RATE_LIMITED'
+        : status === 404
+          ? 'NOT_FOUND'
+          : status < 500
+            ? 'BAD_REQUEST'
+            : 'INTERNAL_ERROR';
+
+    return reply.status(status).send(
+      fail(
+        code,
+        status >= 500 ? 'Something went wrong. Please try again.' : error.message
+      )
+    );
   });
 
-  app.setNotFoundHandler((_req, reply) => reply.status(404).send(fail('NOT_FOUND', 'Route not found.')));
+  app.setNotFoundHandler((_req, reply) =>
+    reply.status(404).send(fail('NOT_FOUND', 'Route not found.'))
+  );
 
   app.get('/health', { schema: { tags: ['system'] } }, async (_req, reply) => {
     try {
@@ -52,5 +85,6 @@ export async function buildApp(opts: AppOptions = {}) {
   });
 
   await app.register(verifyRoutes);
+
   return app;
 }
