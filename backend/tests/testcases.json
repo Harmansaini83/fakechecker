@@ -1,0 +1,358 @@
+[
+  {
+    "name": "genuine PKG-5936B6F5",
+    "code": "FC1.k1.PKG-5936B6F5.LQ_jP6gFB_ikklKIfvUoB6p_d5OP78w9isq6vUT8EaOaI7G9O4zVIVZ2VpyhXEtx8duPJAz4BNasRvAQW_PPBg",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-A536B227",
+    "code": "FC1.k1.PKG-A536B227.zPXa8F7v6Eywe0ZO8Bl1hgVCx5_ZAgSyK5K4c82eTzMb3aH7O12E6KtrxvuzX4Co87Molvh8XmP8EaT63qRGDw",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-D80B7EA8",
+    "code": "FC1.k1.PKG-D80B7EA8.qfBhjuDrA6uk8AQ5e6UtQlAi6FTKZG8qTTFjFPGgh1azrRM0dG25AG08JdzuNU4UBa-6hXtA7a1a2plOedX9CA",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-08702C85",
+    "code": "FC1.k1.PKG-08702C85.ybSdJhNASSQz_l5yjLvoXSezS5IAq_PnYDF5qTVuRCLf5CsdKO9KBv-AU-vOMg_eaGRPzQnIV7tc5vYoTmrdDA",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-F4B74097",
+    "code": "FC1.k1.PKG-F4B74097.m6VzkUMRQrkeSjpYTi6ZTD7itl0LCbLl_p0NyuHRIxtcvFdPu5s4GMgUJXRLXyZgd95J47oRosy3lh-xiXtvCA",
+    "expected": "verified"
+  },
+  {
+    "name": "expired Hybrid Cotton Seed H1",
+    "code": "FC1.k1.PKG-73745F0C.0vqNn6oasDLlgvhB_nNuQkd2vqxV4dCjG1646Kvvm3d_JNy-L2i5aUM7rMCvk7JbRSQkHpiDy5Yo_J4Hhw-YAQ",
+    "expected": "expired"
+  },
+  {
+    "name": "recalled Hybrid Cotton Seed H1",
+    "code": "FC1.k1.PKG-1E37945A.bLsjCKLeBj6kdP0iP0IncKL4hXBFo7mmL_hH72kGehwXn3PiWy7jEjfJ_fw3ZKlwAXb21yOeyJ5RUGoWmndHAQ",
+    "expected": "recalled"
+  },
+  {
+    "name": "genuine PKG-491A0C77",
+    "code": "FC1.k1.PKG-491A0C77.dvsrMf51uBo-Cln2CGifcDdk8bV7JWmQRS70uzqM3VLsDByjVIJ6XrKSIK16GL2J93_O5yhicLyt8QebSbJTCA",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-07A48864",
+    "code": "FC1.k1.PKG-07A48864.ffeLZqAjHvqeUSA44O79Doa0lx8gvUMBp6uA49LFtu1QZxF1UqBx74fiGrIBTNVlAfyZt1PILRqUJ6JVSAWgDg",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-B4C1CACF",
+    "code": "FC1.k1.PKG-B4C1CACF.woWWGwJnTXTl35AuRgJscLhJ-IMm-EweIxj_KojKZUmxFqY9jJGDc0x8SgnrAvQB_clCDyB7Hv_Vte-GWbYDAQ",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-00EF4750",
+    "code": "FC1.k1.PKG-00EF4750.bHpvcMHrWDsv1SzII11vFuzzXVhgSjNIYf1w2F-365QDFtiCrUD34qUmTaHP3To0meT85uendyzJRClnftQ9BA",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-4B526C18",
+    "code": "FC1.k1.PKG-4B526C18.eqdgpi1ATOdAlJAkIMd6giVqInLxx3DAS1rPZsY_Tlst71O3nVzLwfw3J_MOGN-hH6mwkjhChFA2znXJaK53CQ",
+    "expected": "verified"
+  },
+  {
+    "name": "expired Soybean Seed S9",
+    "code": "FC1.k1.PKG-523E756E.SoYewKRp-ryMAhlZ_2-3IxqgQ2x-mTosfLDuTow_xXFxQ2Nn13ct1enh3SrgW9aoPLcaTZXGpvjdi_e_gv6FAA",
+    "expected": "expired"
+  },
+  {
+    "name": "genuine PKG-317BB1FA",
+    "code": "FC1.k1.PKG-317BB1FA.FYplQR6tnF08lPXN3ZGLzMVE8PBMU73h1YuetPD1FYL556bR_jNQXNuRtK22QJHc_sRHy6m65cwYE5f2doS_BQ",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-A73FAE18",
+    "code": "FC1.k1.PKG-A73FAE18.HlhRInO0FuMSa44gzPVjAkqIH6xi2EHh6mWJmUm1HsKFXISpJhGTsrHiPRifl7t1POhXP9VAEd83-R7IGS68Ag",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-6ADF2939",
+    "code": "FC1.k1.PKG-6ADF2939.DqPoUAQQHomfeaiZwH58Fp85gAbYwbWZ4wLrHmr_tkiBO_idtXd8m26Gx-ZOSY_Svt7G79dFS80JqKMgB_gECg",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-60C85708",
+    "code": "FC1.k1.PKG-60C85708.PcQh1lpJuT8diZBjUHqVBz0zKCDuj-U4a3fCXuPaQKkQmA71h-QWecv7Smg4ZIIsyVLw5_zuiA9SivB8mLVKCw",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-7148344B",
+    "code": "FC1.k1.PKG-7148344B.aNJwPcVGq8Z6Hcaegu4djguxl1irqylw7XsoNhrfeA2gxMOH_3JypAeYyDOh9JZhtfQoj_HmvZ5jdELqCtDWBQ",
+    "expected": "verified"
+  },
+  {
+    "name": "expired Neem Shield 300",
+    "code": "FC1.k1.PKG-9CF930B2.8vAB89ZVrsEcNX48J9G86VuUJu1ir4iW7UZAbqPDMmF1Si-XIjZ1jBTh-9a2mX5fJWMDIp8SVMLhBe6H--SnBg",
+    "expected": "expired"
+  },
+  {
+    "name": "recalled Neem Shield 300",
+    "code": "FC1.k1.PKG-B650739E.S5HqKbhPMxMWJkNbdXAAjdrM99UmdxAKV3huqccukTi9gCZnamlbvVrujgWP298EH2olrwluVIowKvtWs2uwCw",
+    "expected": "recalled"
+  },
+  {
+    "name": "genuine PKG-4BCCC2C2",
+    "code": "FC1.k1.PKG-4BCCC2C2.hNPkRHHrg9uNpO9xKHl9RPlK2Ag2RIGWlXu1dE4KlXDXKYKawxfQ3dUPdovbrcE0kXnj49Ju7HujDfha3WP4BQ",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-98D75EE7",
+    "code": "FC1.k1.PKG-98D75EE7.SnjjNgaMJiDekwjU_sjFRi4zJ1NbTIR3tHJrguwp4xZ7RmdSBMVYNapzVV35bGWN5OQsXf9j7d1aH96t7mNNDg",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-2AAF8F3B",
+    "code": "FC1.k1.PKG-2AAF8F3B.R1rzmWohNOY2FIh6LCylMuPoPjJgJxNBGXC8QUHlr0ZOuRfVBzD4ULXTduRUeW_jHpEHXIz7nfr81eWPrK06Dg",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-781BA390",
+    "code": "FC1.k1.PKG-781BA390.nVuELinVBGQHb0X1zJZgAd0pYOlx7CjJJr85OomjhOZc_mdeu5M6K45yG4ywtXWp3LhHYNsfCoA4kH5x8PkaBw",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-8C6D8CF1",
+    "code": "FC1.k1.PKG-8C6D8CF1.p4TdBeD_69UUHXKB4RtPnt42K8BvC7iH6x3Y2xo9G60ouFUrK9HRgcsu1BamJ3WiBDv4QLIHKs-97IAhTJ0uAw",
+    "expected": "verified"
+  },
+  {
+    "name": "expired CropGuard Plus",
+    "code": "FC1.k1.PKG-81282AE6.wrIBZf-0K6VYW8zAeUakLZHDIGMvvlLOKuZuBw0IMvu8WNFUvMGhIJ3kg6uVNEVYfaVrYara6Kb1QIfNah62Dg",
+    "expected": "expired"
+  },
+  {
+    "name": "genuine PKG-3B039D68",
+    "code": "FC1.k1.PKG-3B039D68.Irh6uddv8PB5ymMtYMVBcKkiyjLNoIU6CVShHe6YVK3_NWt1-ENxMpTS9ykg7Hlan-9RRP15Q77upLBxltQWBQ",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-FEE459BE",
+    "code": "FC1.k1.PKG-FEE459BE.dYFBGv4OMeHicuxrNc1HMZiEyx__e_MkGyKKswvnRL2ACrh6ctca3SRk9T-VUW_XRmYrhFvkb_SSUiKqOGpwAQ",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-B64911B4",
+    "code": "FC1.k1.PKG-B64911B4.yvFdrcHPzFvqQooCD24Eb48lL8Uw43DtE06Zq67ySyU7MkG4WOaTHhB7tiBVknr-yqGHEv50dzirfnaA9KPZAw",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-7318C291",
+    "code": "FC1.k1.PKG-7318C291.BnNLPsSykLzKWM6mY2eAEwEky0qXX58spjFBj_1ecBAM6s85EJt4DLHms_kg7RZrBmM14o5nEEpTqD3CFkknDA",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-29EBE6DD",
+    "code": "FC1.k1.PKG-29EBE6DD._pEXwLj2ACRLtFMN6dbvi03XuQZ9M1Z5oqMglrv5FxZC5mmpeL2iPO8idpYLe9JH5eiwV60NTYYbeImE8JgpDw",
+    "expected": "verified"
+  },
+  {
+    "name": "expired NPK 19-19-19",
+    "code": "FC1.k1.PKG-EF2FB880.mZCpb0_xfb9M3pvHKp9eCSagBF5G7i6S08fH0XPIkqfQtMaVfG479IMVO2K8ePTxN1qYOFquB_yBNBwpFo-oCA",
+    "expected": "expired"
+  },
+  {
+    "name": "recalled NPK 19-19-19",
+    "code": "FC1.k1.PKG-645BD4FF.ozdyYpr0mDanh8--7Yij1A8mvGR7mHUjvJPTrlPJvabRpk-OKJAKHeUKatxv22KClcMwx16zqf9SD_sblj1_Cw",
+    "expected": "recalled"
+  },
+  {
+    "name": "genuine PKG-8BCB0070",
+    "code": "FC1.k1.PKG-8BCB0070.3atSDDwtneGzwgKCVrw7lXVeVQRZY7fnMd_N8y6e6N6ZLFg0yRH1cU_eOpnOUGG_vUH0acFSlNmwhy5J3ZQyAg",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-1F0B4DC3",
+    "code": "FC1.k1.PKG-1F0B4DC3.r7L_dx29hKaDvGKwPSUmCVYIEDvcuzoIRtt1PM4W7DRFSAK56Ur2OSObPb7Bo6JBZ1YZsflwOrU8XYAVYYuEBQ",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-7DB0446C",
+    "code": "FC1.k1.PKG-7DB0446C.pEwDIf4d05RnPT77sL1eIGL_sJAVzPaNks4HBQwJPwzTKOiD4RaZ5mfhOQ7LTPqvPb4IQGWxDLmM4F_sZJVWBQ",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-1CB3C9AE",
+    "code": "FC1.k1.PKG-1CB3C9AE.hC7DkgEJaYH1-iaZ6-KGTY6fwoRSnqC4b2yDNUA9Q2Q9wxI4iyQtElmxFLpGvetMrO-m1GlvxWaIb0eimqZcBQ",
+    "expected": "verified"
+  },
+  {
+    "name": "genuine PKG-BA808A1B",
+    "code": "FC1.k1.PKG-BA808A1B.8KyFRus2CK7dzPp8SizcdKCVeIRKpHPS9ia8yn0jLgcqTIzvSYQpUa3IPuXE9dMfPB8Bg7xpGu8fovln7dDlBA",
+    "expected": "verified"
+  },
+  {
+    "name": "expired Urea Prime 46",
+    "code": "FC1.k1.PKG-7F5DB485.TZ4O-VPvJTR4Fygi3-0bvfSwAcrjMoYzRuy9af1k_FJ8hiwe8IwgTuCtrRTLstrTQSfjh37I76-DCt2nVjsmAw",
+    "expected": "expired"
+  },
+  {
+    "name": "forged payload 1",
+    "code": "FC1.k1.PKG-5936B6FA.LQ_jP6gFB_ikklKIfvUoB6p_d5OP78w9isq6vUT8EaOaI7G9O4zVIVZ2VpyhXEtx8duPJAz4BNasRvAQW_PPBg",
+    "expected": "invalid"
+  },
+  {
+    "name": "forged payload 2",
+    "code": "FC1.k1.PKG-A536B22A.zPXa8F7v6Eywe0ZO8Bl1hgVCx5_ZAgSyK5K4c82eTzMb3aH7O12E6KtrxvuzX4Co87Molvh8XmP8EaT63qRGDw",
+    "expected": "invalid"
+  },
+  {
+    "name": "forged payload 3",
+    "code": "FC1.k1.PKG-D80B7EAA.qfBhjuDrA6uk8AQ5e6UtQlAi6FTKZG8qTTFjFPGgh1azrRM0dG25AG08JdzuNU4UBa-6hXtA7a1a2plOedX9CA",
+    "expected": "invalid"
+  },
+  {
+    "name": "forged payload 4",
+    "code": "FC1.k1.PKG-08702C8A.ybSdJhNASSQz_l5yjLvoXSezS5IAq_PnYDF5qTVuRCLf5CsdKO9KBv-AU-vOMg_eaGRPzQnIV7tc5vYoTmrdDA",
+    "expected": "invalid"
+  },
+  {
+    "name": "forged payload 5",
+    "code": "FC1.k1.PKG-F4B7409A.m6VzkUMRQrkeSjpYTi6ZTD7itl0LCbLl_p0NyuHRIxtcvFdPu5s4GMgUJXRLXyZgd95J47oRosy3lh-xiXtvCA",
+    "expected": "invalid"
+  },
+  {
+    "name": "forged signature 1",
+    "code": "FC1.k1.PKG-491A0C77.ACTJbSbeQ8tyLcihy5O_39J2LG61KISKrX6JIVjyBDsLV3Mqzu07SRQmWJ7Vb8kdDcfiGC2nlC-oBu15fMrsvd",
+    "expected": "invalid"
+  },
+  {
+    "name": "forged signature 2",
+    "code": "FC1.k1.PKG-07A48864.gDgWASVJ6JUqRLIP1tZyfAlVNTBIrGif47xBqU1FxZQ1utFL94Au6pBMUvg8xl0aoD97O44ASUeqvHjAqZLeff",
+    "expected": "invalid"
+  },
+  {
+    "name": "forged signature 3",
+    "code": "FC1.k1.PKG-B4C1CACF.QADYbWG-etV_vH7ByDClc_BQvArngS8x0cDGJj9YqFxmUZKjoK_jxIewE-mMI-JhLcsJgRuA53lTXTnJwGWWow",
+    "expected": "invalid"
+  },
+  {
+    "name": "malformed 1",
+    "code": "hello world",
+    "expected": "invalid"
+  },
+  {
+    "name": "malformed 2",
+    "code": "FC1.k1.PKG-ZZZZ",
+    "expected": "invalid"
+  },
+  {
+    "name": "malformed 3",
+    "code": "https://example.com/p/123",
+    "expected": "invalid"
+  },
+  {
+    "name": "malformed 4",
+    "code": "FC1.k1.a.b.c.d",
+    "expected": "invalid"
+  },
+  {
+    "name": "malformed 5",
+    "code": "1234567890",
+    "expected": "invalid"
+  },
+  {
+    "name": "unknown issuer 1",
+    "code": "FC1.k9.PKG-7E52E7D4.olbARL6-dwSOUuzkJKG_plLzz28XVV2zuGW_qWP4aKdTBoyvKASmzrJ4FE_svejKyiOuryakyQVeN8d2rJ4MCw",
+    "expected": "unverified"
+  },
+  {
+    "name": "unknown issuer 2",
+    "code": "FC1.k9.PKG-387C296C.1XTc62BtmvxfG6ESe-S8FzNFlzYvwHvEwsBOh5_2TxgkMS3ntCiY30DhnIMCCDACAuxaoZMCqs67j1w2DllhCw",
+    "expected": "unverified"
+  },
+  {
+    "name": "unknown issuer 3",
+    "code": "FC1.k9.PKG-9E3DAFEB.IKY6aJ1OFyNf81vnti8aOsfl95-CUP_YQpCtK6hTHhY5J6PJKcaluV3KAt69A-Oo6zXtTAoMzW--A4n9zjJMAQ",
+    "expected": "unverified"
+  },
+  {
+    "name": "unknown package 1",
+    "code": "FC1.k1.PKG-0D755395.DETjX6Fe6-hy-tf3MGNDURf3BkCzy_0cpZ3Z6_3TIG12qp7zStQ4i9azJAu6jsx8JCbH1nSKn_waWVdWxNhSDg",
+    "expected": "unverified"
+  },
+  {
+    "name": "unknown package 2",
+    "code": "FC1.k1.PKG-94990949._Tg8X7V75r04ATUNOb1unRVf3J3T-5ocuZmgp7PqXhZ4rvtdzWeT65peGTqPR16GdZuC382_tXwtFaZldUIzAg",
+    "expected": "unverified"
+  },
+  {
+    "name": "unknown package 3",
+    "code": "FC1.k1.PKG-6A550513.6LvXfK_YdaesECJq8_JF6QJnWAVonkhJOopISazBnEGZGjJTpjJ_IfdguyFNQcEghoGVyXylYzSC5Yfl77tGCA",
+    "expected": "unverified"
+  },
+  {
+    "name": "cloned high scan count 1",
+    "code": "FC1.k1.PKG-5F9473FA.k78rs3gbuNo3KYRQ7rxWgS2IT--0l33TlXfL4dCUU2itemKB8XG4N8RRCeDBABEuNPABbyrG11iGzLea6fHWCQ",
+    "expected": "suspicious",
+    "location": {
+      "lat": 21.1458,
+      "lng": 79.0882
+    }
+  },
+  {
+    "name": "cloned high scan count 2",
+    "code": "FC1.k1.PKG-D5683A1C.CAzpafZob80JLhINK-S6d9jryuvZFGvpTOYncmDsqBebPmzEHI-qjDTL2n_hAb4uUNQLcbIeFcVH1ZiJUc_GAA",
+    "expected": "suspicious",
+    "location": {
+      "lat": 21.1458,
+      "lng": 79.0882
+    }
+  },
+  {
+    "name": "cloned geo jump 1",
+    "code": "FC1.k1.PKG-6829F771.qXJsmD4GlohR3W1yshyZUCq8xgWW1yEJX-72sfCE-GR0LCRQX2yRa648Pfc6BB01XjdOAOjlchA2BTHalLjqDw",
+    "expected": "suspicious",
+    "location": {
+      "lat": 28.6139,
+      "lng": 77.209
+    }
+  },
+  {
+    "name": "cloned geo jump 2",
+    "code": "FC1.k1.PKG-64CE3D3E.O1DHlo3ZXcYcAsuAKxnFeHJCfwBzDsdQr-xW3Zr2Sy0ydOxZZT7bNk6lvbKv6VXh_IJVCX3Dyn72goFBzGrdAw",
+    "expected": "suspicious",
+    "location": {
+      "lat": 28.6139,
+      "lng": 77.209
+    }
+  },
+  {
+    "name": "legit repeat scans 1",
+    "code": "FC1.k1.PKG-9CE4FD1A.eUpEh31aHpPDXC7_y34ADzgpjcrWGrowXxb8bB4y4gYu923GsZ41AnXpvW-oDA49-wujEdEecFaEEFh7l98-DA",
+    "expected": "verified",
+    "scanMode": "retailer",
+    "location": {
+      "lat": 21.1458,
+      "lng": 79.0882
+    }
+  },
+  {
+    "name": "legit repeat scans 2",
+    "code": "FC1.k1.PKG-4BE8ADC4.Z2U4_whxLgoc2DF5gt9bybxpjul885q0RL7denQvFHJblqr5HkG-iiVbzxGbn5jTxpIKXlSzKZSSptvSfgBtDg",
+    "expected": "verified",
+    "scanMode": "retailer",
+    "location": {
+      "lat": 21.1458,
+      "lng": 79.0882
+    }
+  },
+  {
+    "name": "confirmed counterfeit 1",
+    "code": "FC1.k1.PKG-8D6A0CCA.N3LmVSCM19g5bh-SYo6nLXpajduNUN9o9PjDalBTG_cGduTbQ7QInc4DyeZo0ZWGqMXpMrajEYTskqnKHvsjDQ",
+    "expected": "confirmed_counterfeit"
+  },
+  {
+    "name": "confirmed counterfeit 2",
+    "code": "FC1.k1.PKG-5A6E54B1.CkOZ_I2Py1kFQkCRQSogtEJcv92v1E4xgr9wAB92lEtXBW3GaWpPsAsaZ1EqLJnY7xNoRGCk83TI3em3rGlaAA",
+    "expected": "confirmed_counterfeit"
+  }
+]
