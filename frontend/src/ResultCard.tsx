@@ -1,7 +1,15 @@
 import type { VerifyData } from './api';
 import { DISCLAIMER, VERDICT_INFO, reasonText } from './verdictInfo';
 
-export function ResultCard({ data, onAgain }: { data: VerifyData; onAgain: () => void }) {
+export function ResultCard({
+  data,
+  onAgain,
+  onReport,
+}: {
+  data: VerifyData;
+  onAgain: () => void;
+  onReport: () => void;
+}) {
   const info = VERDICT_INFO[data.verdict] ?? VERDICT_INFO.unverified;
   const reasons = (data.reasons ?? []).map(reasonText).filter(Boolean);
 
@@ -19,7 +27,11 @@ export function ResultCard({ data, onAgain }: { data: VerifyData; onAgain: () =>
       {reasons.length > 0 && (
         <>
           <h3>Why</h3>
-          <ul>{reasons.map((r, i) => <li key={i}>{r}</li>)}</ul>
+          <ul>
+            {reasons.map((r, i) => (
+              <li key={i}>{r}</li>
+            ))}
+          </ul>
         </>
       )}
 
@@ -27,7 +39,14 @@ export function ResultCard({ data, onAgain }: { data: VerifyData; onAgain: () =>
       <p>{data.nextStep || info.nextStep}</p>
 
       <p className="disclaimer">{DISCLAIMER}</p>
-      <button className="btn primary" onClick={onAgain}>Check another packet</button>
+
+      <button className="btn" onClick={onReport}>
+        Report this packet
+      </button>
+
+      <button className="btn primary" onClick={onAgain}>
+        Check another packet
+      </button>
     </section>
   );
 }

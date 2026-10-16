@@ -3,17 +3,21 @@ import cors from '@fastify/cors';
 import helmet from '@fastify/helmet';
 import rateLimit from '@fastify/rate-limit';
 import jwt from '@fastify/jwt';
+import multipart from '@fastify/multipart';
 import swagger from '@fastify/swagger';
 import swaggerUi from '@fastify/swagger-ui';
+
 import { pool } from './db/pool.js';
 import { verifyRoutes } from './routes/verify.js';
 import { authRoutes } from './routes/auth.js';
 import { adminRoutes } from './routes/admin.js';
+import { reportRoutes } from './routes/reports.js';
 import { ok, fail } from './http.js';
 
 export type AppOptions = {
   rateLimitMax?: number;
   loginRateLimitMax?: number;
+  reportSubmitMax?: number;
   logger?: boolean;
 };
 
@@ -25,13 +29,15 @@ export async function buildApp(opts: AppOptions = {}) {
 
   const secret =
     process.env.JWT_SECRET ??
-    (process.env.NODE_ENV === 'production' ? '' : 'dev-only-secret-change-me');
+    (process.env.NODE_ENV === 'production'
+      ? ''
+      : 'dev-only-secret-change-me');
 
   if (!secret) {
     throw new Error('JWT_SECRET must be set in production');
   }
 
-  // Zod validates inside the routes; the schemas below are for documentation only.
+  // Zod validates inside the routes; schemas are for documentation only.
   app.setValidatorCompiler(() => (data: unknown) => ({ value: data }));
 
   await app.register(helmet, {
@@ -50,12 +56,22 @@ export async function buildApp(opts: AppOptions = {}) {
 
   await app.register(jwt, { secret });
 
+  // Support multipart requests and limit uploaded files.
+  await app.register(multipart, {
+    limits: {
+      fileSize: 5 * 1024 * 1024,
+      files: 3,
+      fields: 10,
+    },
+  });
+
   await app.register(swagger, {
     openapi: {
       info: {
         title: 'FakeChecker API',
         version: '1.0.0',
-        description: 'Verification API for seeds, pesticides and fertilizers.',
+        description:
+          'Verification API for seeds, pesticides and fertilizers.',
       },
       components: {
         securitySchemes: {
@@ -73,12 +89,13 @@ export async function buildApp(opts: AppOptions = {}) {
     routePrefix: '/docs',
   });
 
-  // Centralized error handler with safe handling of unknown errors.
+  // Centralized error handler.
   app.setErrorHandler((err: unknown, req, reply) => {
     const error = err instanceof Error ? err : new Error(String(err));
 
     const statusCode =
-      typeof (err as { statusCode?: unknown } | null)?.statusCode === 'number'
+      typeof (err as { statusCode?: unknown } | null)?.statusCode ===
+      'number'
         ? (err as { statusCode: number }).statusCode
         : 500;
 
@@ -134,6 +151,11 @@ export async function buildApp(opts: AppOptions = {}) {
   });
 
   await app.register(adminRoutes);
+
+  // Register report routes.
+  await app.register(reportRoutes, {
+    submitMax: opts.reportSubmitMax ?? 5,
+  });
 
   return app;
 }

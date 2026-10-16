@@ -103,7 +103,13 @@ export default function App() {
 
       {view === 'loading' && <p className="loading" aria-live="polite">Checking…</p>}
 
-      {view === 'result' && result && <ResultCard data={result} onAgain={reset} />}
+   {view === 'result' && result && (
+  <ResultCard
+    data={result}
+    onAgain={reset}
+    onReport={() => alert('Report feature coming soon!')}
+  />
+)}
     </main>
   );
 }
