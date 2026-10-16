@@ -1,15 +1,16 @@
 import 'dotenv/config';
-import Fastify from 'fastify';
-import pg from 'pg';
+import { buildApp } from './app.js';
+import { pool } from './db/pool.js';
 
-const app = Fastify({ logger: true });
-const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
+const app = await buildApp();
+const port = Number(process.env.PORT) || 3000;
 
-app.get('/health', async () => ({ status: 'ok' }));
+const shutdown = async () => {
+  await app.close();
+  await pool.end();
+  process.exit(0);
+};
+process.on('SIGTERM', shutdown);
+process.on('SIGINT', shutdown);
 
-app.get('/db-check', async () => {
-  const r = await pool.query('SELECT PostGIS_Version() AS postgis');
-  return { postgis: r.rows[0].postgis };
-});
-
-app.listen({ port: Number(process.env.PORT) || 3000, host: '0.0.0.0' });
+await app.listen({ port, host: '0.0.0.0' });

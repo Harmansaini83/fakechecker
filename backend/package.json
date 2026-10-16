@@ -10,13 +10,20 @@
     "build": "tsc",
     "migrate": "tsx src/db/migrate.ts",
     "seed": "tsx src/db/seed.ts",
-    "quickcheck": "tsx src/scripts/quickcheck.ts"
+    "quickcheck": "tsx src/scripts/quickcheck.ts",
+    "test:int": "vitest run --config vitest.int.config.ts",
+    "evaluate": "npm run seed && tsx src/scripts/evaluate.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@fastify/cors": "^11.3.1",
+    "@fastify/helmet": "^13.2.0",
+    "@fastify/rate-limit": "^11.2.1",
+    "@fastify/swagger": "^9.9.2",
+    "@fastify/swagger-ui": "^6.1.2",
     "dotenv": "^18.0.8",
     "fastify": "^5.12.7",
     "pg": "^8.23.1",
